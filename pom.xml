@@ -64,9 +64,9 @@
     </scm>
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-        <jackson.version>2.5.0</jackson.version>
+        <jackson.version>2.8.11</jackson.version>
         <guava.version>18.0</guava.version>
-        <slf4j.version>1.7.10</slf4j.version>
+        <slf4j.version>1.7.25</slf4j.version>
     </properties>
     <dependencies>
         <dependency>
@@ -112,7 +112,7 @@
         <dependency>
             <groupId>com.ning</groupId>
             <artifactId>async-http-client</artifactId>
-            <version>1.9.8</version>
+            <version>1.9.40</version>
         </dependency>
         <dependency>
             <groupId>joda-time</groupId>
@@ -493,37 +493,6 @@
                     <generateGitPropertiesFile>true</generateGitPropertiesFile>
                     <generateGitPropertiesFilename>src/main/resources/com/ning/billing/recurly/git.properties</generateGitPropertiesFilename>
                 </configuration>
-            </plugin>
-            <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-shade-plugin</artifactId>
-                <version>3.1.0</version>
-                <executions>
-                    <execution>
-                        <phase>package</phase>
-                        <goals>
-                            <goal>shade</goal>
-                        </goals>
-                        <configuration>
-                            <artifactSet>
-                                <includes>
-                                    <include>com.fasterxml.jackson.*:*</include>
-                                    <include>org.codehaus.woodstox:stax2-api</include>
-                                </includes>
-                            </artifactSet>
-                            <relocations>
-                                <relocation>
-                                    <pattern>com.fasterxml.jackson</pattern>
-                                    <shadedPattern>com.ning.billing.recurly.shaded.com.fasterxml.jackson</shadedPattern>
-                                </relocation>
-                                <relocation>
-                                    <pattern>org.codehaus.stax2</pattern>
-                                    <shadedPattern>com.ning.billing.recurly.shaded.org.codehaus.stax2</shadedPattern>
-                                </relocation>
-                            </relocations>
-                        </configuration>
-                    </execution>
-                </executions>
             </plugin>
         </plugins>
     </build>
